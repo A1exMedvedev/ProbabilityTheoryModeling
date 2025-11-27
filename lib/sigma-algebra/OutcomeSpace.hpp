@@ -14,8 +14,8 @@ public:
 
   OutcomeId AddOutcome(const std::string& name);
 
-  std::size_t GetSize() const noexcept;
-  const std::string& GetName(OutcomeId id) const;
+  [[nodiscard]] size_t GetSize() const noexcept;
+  [[nodiscard]] const std::string& GetName(OutcomeId id) const;
 
 private:
   std::vector<std::string> names_;

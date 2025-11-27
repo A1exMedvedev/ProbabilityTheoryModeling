@@ -14,11 +14,11 @@ public:
 
   // Задать P({ω_i}) = p_i
   void SetAtomicProbability(OutcomeSpace::OutcomeId id, double p);
-  double GetAtomicProbability(OutcomeSpace::OutcomeId id) const;
+  [[nodiscard]] double GetAtomicProbability(OutcomeSpace::OutcomeId id) const;
 
-  bool IsValid(double eps = 1e-9) const;
+  [[nodiscard]] bool IsValid(double eps = 1e-9) const;
 
-  double Probability(const Event& event) const;
+  [[nodiscard]] double Probability(const Event& event) const;
 
 private:
   const OutcomeSpace& omega_;

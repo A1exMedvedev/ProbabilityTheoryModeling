@@ -10,10 +10,10 @@ class SigmaAlgebra {
 public:
   SigmaAlgebra(const OutcomeSpace& omega, std::vector<Event> events);
 
-  const OutcomeSpace& GetOutcomeSpace() const noexcept;
-  const std::vector<Event>& GetEvents() const noexcept;
+  [[nodiscard]] const OutcomeSpace& GetOutcomeSpace() const noexcept;
+  [[nodiscard]] const std::vector<Event>& GetEvents() const noexcept;
 
-  bool IsSigmaAlgebra() const;
+  [[nodiscard]] bool IsSigmaAlgebra() const;
 
   // Построение сигма-алгебры из множества генераторов
   static SigmaAlgebra Generate(const OutcomeSpace& omega, const std::vector<Event>& generators);

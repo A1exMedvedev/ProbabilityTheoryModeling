@@ -13,8 +13,8 @@ class DiscreteRandomVariable {
 public:
   DiscreteRandomVariable(const OutcomeSpace& omega, const ProbabilityMeasure& P, std::vector<double> values);
 
-  std::optional<double> Value(OutcomeSpace::OutcomeId id) const;
-  double ExpectedValue() const;
+  [[nodiscard]] std::optional<double> Value(OutcomeSpace::OutcomeId id) const;
+  [[nodiscard]] double ExpectedValue() const;
 
 private:
   const OutcomeSpace& omega_;

@@ -12,10 +12,10 @@ public:
   Event() = default;
   explicit Event(std::vector<bool> mask);
 
-  size_t GetSize() const noexcept;
-  bool Contains(OutcomeSpace::OutcomeId id) const;
+  [[nodiscard]] size_t GetSize() const noexcept;
+  [[nodiscard]] bool Contains(OutcomeSpace::OutcomeId id) const;
 
-  const std::vector<bool>& GetMask() const noexcept;
+  [[nodiscard]] const std::vector<bool>& GetMask() const noexcept;
 
   static Event Empty(std::size_t n);
   static Event Full(std::size_t n);
