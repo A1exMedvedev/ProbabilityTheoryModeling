@@ -102,13 +102,21 @@ jobs:
         shell: bash
         working-directory: ./cmake-build-debug
         run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            ./cpp_tests_tests.exe
-          else
-            cd tests
-            cd Debug
-            ./cpp_tests_tests
-          fi
+            if [ "$RUNNER_OS" == "Windows" ]; then
+            if [ -f "./cpp_tests_tests.exe" ]; then
+              ./cpp_tests_tests.exe
+            else
+              ./tests/Debug/cpp_tests_tests.exe
+            fi
+            elif [ "$RUNNER_OS" == "macOS" ]; then
+              if [ -f "./tests/cpp_tests_tests" ]; then
+                ./tests/cpp_tests_tests
+              else
+                ./tests/Debug/cpp_tests_tests
+              fi
+            else
+              ./tests/cpp_tests_tests
+            fi
 
   memory-leaks:
     name: Find memory leaks in tests
