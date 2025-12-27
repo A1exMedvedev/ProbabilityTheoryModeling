@@ -130,3 +130,25 @@ TEST(LawOfLargeNumbersTest, LaplaceMeanConverges) {
         EXPECT_LT(result.entries[i - 1].n, result.entries[i].n);
     }
 }
+
+TEST(LawOfLargeNumbersTest, CauchyNoMean) {
+  using namespace ptm;
+
+  std::mt19937 rng(131415);
+
+  auto dist = std::make_shared<CauchyDistribution>(0.0, 1.0);
+  LawOfLargeNumbersSimulator sim(dist);
+
+  size_t max_n = 30000;
+  size_t step = 1000;
+
+  auto result = sim.Simulate(rng, max_n, step);
+
+  ASSERT_FALSE(result.entries.empty());
+
+  EXPECT_TRUE(std::isnan(dist->TheoreticalMean()));
+
+  for (const auto& entry : result.entries) {
+    EXPECT_FALSE(std::isinf(entry.sample_mean));
+  }
+}
